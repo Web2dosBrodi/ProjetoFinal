@@ -14,7 +14,8 @@ public class EventoDAO_JPA {
 
     public EntityManagerFactory getFactory() {
         if (EventoDAO_JPA.factory == null) {
-            EventoDAO_JPA.factory = Persistence.createEntityManagerFactory("Agenda_Comunitaria");
+            EventoDAO_JPA.factory = Persistence.createEntityManagerFactory("AgendaFiltros");
+            System.out.println("Factory: " + factory);
         }
         return EventoDAO_JPA.factory;
     }
@@ -29,18 +30,18 @@ public class EventoDAO_JPA {
     
     public List<Evento> getListaEventos() {
         EntityManager em = getFactory().createEntityManager();
-        List<Evento> list = em.createQuery("SELECT * FROM evento")
+        List<Evento> list = em.createQuery("SELECT e FROM Evento e")
                 .getResultList();
-        factory.close();
+        em.close();
         return list;
     }
 
     public List<Evento> getBuscaEvento(String nomeEvento) {
         EntityManager em = getFactory().createEntityManager();
-        List<Evento> list = em.createQuery("SELECT * FROM evento WHERE name_event=:nome")
-                .setParameter("nome", nomeEvento)
+        List<Evento> list = em.createQuery("SELECT e FROM Evento e WHERE e.nome like :busca")
+                .setParameter("busca", nomeEvento)
                 .getResultList();
-        factory.close();
+        em.close();
         return list;
     }
     

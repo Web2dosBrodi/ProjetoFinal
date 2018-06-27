@@ -8,9 +8,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<%--fmt:setLocale value="${locale}"/>
-<fmt:setBundle basename="i18n.messages"/--%>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -62,12 +59,9 @@
     <script>
         $(document).ready(function () {
             $("#btnBusca").click(function () {
-                var nomeBusca = '{}';
                 $.ajax({
                     type: "GET",
                     url: "/BuscaRest",
-                    //url: "rest/Busca/porNome/"+document.getElementsByTagName("#txtBusca").value,
-                    data: nomeBusca,
                     dataType: "json",
                     success: function (msg, status) {
                         alert(msg);

@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <title>Agenda de eventos</title>
+    </head>
+    <body>
+        Seja bem vind@
+        <h1>Eventos cadastrados</h1>
+        <fieldset>
+            <legend>Busca de Evento</legend>
+            <form action="Busca" method="get">
+                Nome <input type="text" id="txtBusca" name="busca" value=""/>
+                <input type="submit" id="btnBusca" value="Buscar"/>
+            </form>
+        </fieldset>
+
+        <br>
+        <form action="InsertServlet" method="get">
+            <input type="submit" name="inserir" value="Novo Evento">
+        </form>
+
+        <br>
+        <table id="tabela">
+            <tr> 
+                <th> Evento</th>
+                <th> Data</th>
+                <th> Usuario</th>
+            </tr>
+            <tr>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+            </tr> 
+            <!--<c:forEach items="${listaEventos}" var="evento">
+                <tr>
+                    <td> ${evento.nome}</td>
+                    <td> ${evento.data}</td>
+                    <td> ${evento.userId}</td>
+                </tr>            
+            </c:forEach>-->
+        </table>
+
+        <script>
+            $(document).ready(function () {
+                $("#btnBusca").click(function(event) {                    
+                    $.ajax({
+                        type: "GET",
+                        url: "Evento",
+                        dataType: "json",
+                        success: function (obj, status) {
+                            console.log(obj);
+                            for (var i = 0; i < obj.length; i++) {
+                                $("#tabela").append('<tr> <td>'+
+                                        obj[i]["id"]+'</td><td>'+
+                                        obj[i]["nome"]+'</td><td>'+
+                                        obj[i]["userId"]+'</td></tr>');
+                            }
+                        },
+                        error: function (xhr, msg, e) {
+                            alert(msg + " E: " + e);
+                        }
+                    });
+                    event.preventDefault();
+                    event.stopPropagation();
+                    return false;
+                });
+            });
+        </script>
+    </body>
+
+</html>

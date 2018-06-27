@@ -13,7 +13,7 @@ public class UsuarioDAO_JPA {
 
     public EntityManagerFactory getFactory() {
         if (UsuarioDAO_JPA.factory == null) {
-            UsuarioDAO_JPA.factory = Persistence.createEntityManagerFactory("agendacomunitaria");
+            UsuarioDAO_JPA.factory = Persistence.createEntityManagerFactory("agenda");
         }
         return UsuarioDAO_JPA.factory;
     }

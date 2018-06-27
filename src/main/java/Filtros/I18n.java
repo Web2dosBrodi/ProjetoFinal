@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -13,13 +12,12 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServletRequest;
 
 /**
  *
  * @author White
  */
-@WebFilter(filterName = "i18n", urlPatterns = {"/Busca"})
+@WebFilter(filterName = "i18n", urlPatterns = {"/*"})
 public class I18n implements Filter {
 
     private static final boolean debug = true;
